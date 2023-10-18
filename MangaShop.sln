@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangaShop", "MangaShop\MangaShop.csproj", "{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {898CB408-0D26-4A33-BECE-B52E4F1A04F3}
+	EndGlobalSection
+EndGlobal
