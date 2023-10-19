@@ -9,7 +9,7 @@ namespace MangaShop.Models
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
-        [Required, Display(Name = "Volume Image")]
+        [Display(Name = "Volume Image")]
         public string VolumeImage { get; set; }
         [MaxLength(100)] 
         public string Description { get; set; }
