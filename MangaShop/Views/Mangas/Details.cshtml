@@ -17,12 +17,6 @@
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VolumeImage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VolumeImage)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class = "col-sm-10">
@@ -69,4 +63,8 @@
 <div>
     <a class="btn btn-warning" asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Back</a>
     <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+</div>
+<div class="col-4">
+    <br />
+    <img src="@Model.VolumeImage" class="w-100" />
 </div>

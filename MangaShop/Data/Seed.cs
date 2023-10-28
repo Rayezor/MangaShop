@@ -45,6 +45,18 @@ namespace MangaShop.Data
                             DatePublished = DateTime.Parse("2013-9-30"),
                             Price = 10.0,
                          },
+                        new Manga()
+                        {
+                            Title = "Attack on Titan",
+                            VolumeImage = "/images/attack-on-titan-vol-1.jpg",
+                            Description = "In this post-apocalytpic sci-fi story, humanity has been devastated by the bizarre, giant humanoids known as the Titans. Little is known about where they came from or why they are bent on consuming mankind. Seemingly unintelligent, they have roamed the world for years, killing everyone they see. For the past century, what's left of man has hidden in a giant, three-walled city. People believe their 100-meter-high walls will protect them from the Titans, but the sudden appearance of an immense Titan is about to change everything. Winner of the 2011 Kodansha Manga Award (Shonen) and nominated for the prestigious Osamu Tezuka Cultural Prize for 2012.",
+                            Author = "Hajime Isayama",
+                            MangaCategory = MangaCategory.Seinen,
+                            Genre = Genre.Action,
+                            Volume = 2,
+                            DatePublished = DateTime.Parse("2010-3-17"),
+                            Price = 12.0,
+                         },
                     });
                 context.SaveChanges();
             }
