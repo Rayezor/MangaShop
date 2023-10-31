@@ -11,10 +11,9 @@ namespace MangaShop.Controllers
     {
         private readonly MangashopContext _context;
 
-        public StoreController()
+        public StoreController(MangashopContext context)
         {
-            _context = new MangashopContext();
-            _context.Database.EnsureCreated();
+            _context = context;
         }
         public async Task<IActionResult> Index(string searchString, string minPrice, string maxPrice)
         {

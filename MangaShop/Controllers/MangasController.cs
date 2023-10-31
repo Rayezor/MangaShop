@@ -14,10 +14,9 @@ namespace MangaShop.Controllers
     {
         private readonly MangashopContext _context;
 
-        public MangasController()
+        public MangasController(MangashopContext context)
         {
-            _context = new MangashopContext();
-            _context.Database.EnsureCreated();
+            _context = context;
         }
 
         // GET: Mangas

@@ -16,7 +16,12 @@ namespace MangaShop.Data
             optionsBuilder.UseSqlServer(MangashopContextConnectionString);
 
         }
+        public MangashopContext(DbContextOptions<MangashopContext> options)
+        : base(options)
+        {
+        }
 
         public DbSet<Manga> Mangas { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
     }
 }
