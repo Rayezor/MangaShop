@@ -9,6 +9,8 @@ builder.Services.AddDbContext<MangashopContext>(
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddScoped<Cart>(sp => Cart.GetCart(sp));
 
 builder.Services.AddDistributedMemoryCache();
