@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MangaShop.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MangaShop.Models
 {
@@ -55,6 +56,64 @@ namespace MangaShop.Models
             {
                 cartItem.Quantity += quantity;
             }
+            _context.SaveChanges();
+        }
+
+        public int ReduceQuantity(Manga manga)
+        {
+            var cartItem = GetCartItem(manga);
+            var remainingQuantity = 0;
+
+            if (cartItem != null)
+            {
+                if (cartItem.Quantity > 1)
+                {
+                    remainingQuantity = --cartItem.Quantity;
+                }
+                else
+                {
+                    _context.CartItems.Remove(cartItem);
+                }
+            }
+            _context.SaveChanges();
+
+            return remainingQuantity;
+        }
+
+        public int IncreaseQuantity(Manga manga)
+        {
+            var cartItem = GetCartItem(manga);
+            var remainingQuantity = 0;
+
+            if (cartItem != null)
+            {
+                if (cartItem.Quantity > 0)
+                {
+                    remainingQuantity = ++cartItem.Quantity;
+                }
+            }
+            _context.SaveChanges();
+
+            return remainingQuantity;
+        }
+
+        public void RemoveFromCart(Manga manga)
+        {
+            var cartItem = GetCartItem(manga);
+
+            if (cartItem != null)
+            {
+                _context.CartItems.Remove(cartItem);
+            }
+            _context.SaveChanges();
+        }
+
+        public void ClearCart()
+        {
+            var cartItems = _context.CartItems.Where(ci => ci.CartId == Id);
+
+            _context.CartItems.RemoveRange(cartItems);
+
             _context.SaveChanges();
         }
 
