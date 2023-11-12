@@ -9,6 +9,7 @@
             <tr>
                 <th></th>
                 <th>Book</th>
+                <th>Volume</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Remove</th>
@@ -20,10 +21,13 @@
                 var bookTotal = item.Manga.Price * item.Quantity;
                 <tr>
                     <td>
-                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id"><img src="@item.Manga.VolumeImage" style="height: 4em"></a>
+                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Manga.Id"><img src="@item.Manga.VolumeImage" style="height: 4em"></a>
                     </td>
                     <td>
-                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">@item.Manga.Title</a>
+                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Manga.Id">@item.Manga.Title</a>
+                    </td>
+                    <td>
+                        @item.Manga.Volume
                     </td>
                     <td>
                         @bookTotal.ToString("c")
@@ -42,7 +46,8 @@
         <tfoot>
             <tr>
                 <td></td>
-                <td class="text-right">
+                <td></td>
+                <td style="float: right">
                     <strong>Total:</strong>
                 </td>
                 <td>
