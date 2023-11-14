@@ -12,7 +12,7 @@ builder.Services.AddDbContext<MangashopContext>(
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddDefaultIdentity<DefaultUser>().AddEntityFrameworkStores<MangashopContext>();
+builder.Services.AddDefaultIdentity<DefaultUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<MangashopContext>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

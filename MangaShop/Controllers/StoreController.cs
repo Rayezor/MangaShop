@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MangaShop.Controllers
 {
+    [Authorize]
     public class StoreController : Controller
     {
         private readonly MangashopContext _context;
@@ -15,6 +16,7 @@ namespace MangaShop.Controllers
         {
             _context = context;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string searchString, string minPrice, string maxPrice)
         {
             var books = _context.Mangas.Select(b => b);
