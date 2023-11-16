@@ -29,6 +29,24 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        //Initialize Roles and Users. This one will create a user with an Admin-role aswell as a separate User-role. See UserRoleInitializer.cs in Models
+        UserRoleInitializer.InitializeAsync(services).Wait();
+        // Seed book data
+        Seed.SeedData(app);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occured while attempting to seed the database");
+    }
+}
+
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     //await Seed.SeedUsersAndRolesAsync(app);

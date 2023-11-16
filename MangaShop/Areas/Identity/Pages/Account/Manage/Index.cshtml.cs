@@ -75,6 +75,7 @@ namespace MangaShop.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             public string City { get; set; }
             [Phone]
+            [DataType(DataType.PhoneNumber)]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }

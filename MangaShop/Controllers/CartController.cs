@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MangaShop.Data;
 using MangaShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MangaShop.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly MangashopContext _context;

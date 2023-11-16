@@ -93,6 +93,54 @@ namespace MangaShop.Data
                             DatePublished = DateTime.Parse("2010-3-17"),
                             Price = 12.0,
                          },
+                        new Manga()
+                        {
+                            Title = "Attack on Titan",
+                            VolumeImage = "/images/attack-on-titan-vol-2.jpg",
+                            Description = "This is the description of the second Titan manga",
+                            Author = "Hajime Isayama",
+                            MangaCategory = MangaCategory.Seinen,
+                            Genre = Genre.Action,
+                            Volume = 2,
+                            DatePublished = DateTime.Parse("2010-3-23"),
+                            Price = 12.0,
+                         },
+                        new Manga()
+                        {
+                            Title = "Attack on Titan",
+                            VolumeImage = "/images/attack-on-titan-vol-3.jpg",
+                            Description = "This is the description of the third Titan manga",
+                            Author = "Hajime Isayama",
+                            MangaCategory = MangaCategory.Seinen,
+                            Genre = Genre.Action,
+                            Volume = 3,
+                            DatePublished = DateTime.Parse("2010-3-30"),
+                            Price = 12.0,
+                         },
+                        new Manga()
+                        {
+                            Title = "Attack on Titan",
+                            VolumeImage = "/images/attack-on-titan-vol-4.jpg",
+                            Description = "This is the description of the fourth Titan manga",
+                            Author = "Hajime Isayama",
+                            MangaCategory = MangaCategory.Seinen,
+                            Genre = Genre.Action,
+                            Volume = 4,
+                            DatePublished = DateTime.Parse("2010-3-7"),
+                            Price = 12.0,
+                         },
+                        new Manga()
+                        {
+                            Title = "Attack on Titan",
+                            VolumeImage = "/images/attack-on-titan-vol-5.jpg",
+                            Description = "This is the description of the fifth Titan manga",
+                            Author = "Hajime Isayama",
+                            MangaCategory = MangaCategory.Seinen,
+                            Genre = Genre.Action,
+                            Volume = 5,
+                            DatePublished = DateTime.Parse("2010-3-14"),
+                            Price = 12.0,
+                         },
                     });
                 context.SaveChanges();
             }

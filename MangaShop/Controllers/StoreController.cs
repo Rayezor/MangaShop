@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MangaShop.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class StoreController : Controller
     {
         private readonly MangashopContext _context;

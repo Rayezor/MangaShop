@@ -6,6 +6,7 @@ using System;
 
 namespace MangaShop.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly MangashopContext _context;
