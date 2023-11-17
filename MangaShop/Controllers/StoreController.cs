@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Drawing.Printing;
+using MangaShop.Models;
 
 namespace MangaShop.Controllers
 {
@@ -17,10 +19,11 @@ namespace MangaShop.Controllers
             _context = context;
         }
         [AllowAnonymous]
-        public async Task<IActionResult> Index(string searchString, string minPrice, string maxPrice)
+        public async Task<IActionResult> Index(string searchString, string minPrice, string maxPrice, int page = 1, int pageSize = 8)
         {
             var books = _context.Mangas.Select(b => b);
 
+            // Apply your existing filtering logic
             if (!string.IsNullOrEmpty(searchString))
             {
                 books = books.Where(b => b.Title.Contains(searchString) || b.Author.Contains(searchString));
@@ -38,7 +41,25 @@ namespace MangaShop.Controllers
                 books = books.Where(b => b.Price <= max);
             }
 
-            return View(await books.ToListAsync());
+            // Calculate total count before pagination
+            var totalCount = await books.CountAsync();
+
+            // Apply pagination
+            var paginatedBooks = await books.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            // Create a ViewModel to hold paginated data
+            var viewModel = new MangaViewModel
+            {
+                Mangas = paginatedBooks,
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                SearchString = searchString,
+                MinPrice = minPrice,
+                MaxPrice = maxPrice
+            };
+
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Details(int? id)

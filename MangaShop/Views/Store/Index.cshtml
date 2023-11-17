@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MangaShop.Models.Manga>
+﻿@model MangaShop.Models.MangaViewModel
 
 @{
     ViewData["Title"] = "Store";
@@ -23,7 +23,7 @@
 
 
 <div class="row">
-    @foreach (var book in Model)
+    @foreach (var book in Model.Mangas)
     {
         <div class="col-3">
             <div class="card my-2 store-card">
@@ -31,8 +31,7 @@
                     <img src="@book.VolumeImage" class="card-img-top card-img-custom">
                     <div class="card-body" style="height: 8em;">
                         <h5 class="mb-3">@book.Title</h5>
-                        @Html.DisplayNameFor(book => book.Volume)
-                        <h4 class="mb-3">@book.Volume</h4>
+                        <h5 class="mb-3">Volume @book.Volume</h5>
                     </div>
                     <div class="card-body">
                         <span class="card-text">@book.Price.ToString("c")</span>
@@ -42,4 +41,14 @@
             </div>
         </div>
     }
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i, searchString = Model.SearchString, minPrice = Model.MinPrice, maxPrice = Model.MaxPrice })">
+                    @i
+                </a>
+            </li>
+        }
+    </ul>
 </div>
