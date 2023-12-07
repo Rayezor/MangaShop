@@ -31,7 +31,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 1,
                             DatePublished = DateTime.Parse("2013-9-26"),
-                            Price = 10.0,
+                            Price = 10.0M,
                          },
                         new Manga()
                         {
@@ -43,7 +43,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 2,
                             DatePublished = DateTime.Parse("2013-10-4"),
-                            Price = 10.0,
+                            Price = 10.0M,
                          },
                         new Manga()
                         {
@@ -55,7 +55,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 3,
                             DatePublished = DateTime.Parse("2013-10-8"),
-                            Price = 10.0,
+                            Price = 10.0M,
                          },
                         new Manga()
                         {
@@ -67,7 +67,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 4,
                             DatePublished = DateTime.Parse("2013-10-12"),
-                            Price = 10.0,
+                            Price = 10.0M,
                          },
                         new Manga()
                         {
@@ -79,7 +79,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 5,
                             DatePublished = DateTime.Parse("2013-10-16"),
-                            Price = 10.0,
+                            Price = 10.0M,
                          },
                         new Manga()
                         {
@@ -91,7 +91,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 1,
                             DatePublished = DateTime.Parse("2010-3-17"),
-                            Price = 12.0,
+                            Price = 12.0M,
                          },
                         new Manga()
                         {
@@ -103,7 +103,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 2,
                             DatePublished = DateTime.Parse("2010-3-23"),
-                            Price = 12.0,
+                            Price = 12.0M,
                          },
                         new Manga()
                         {
@@ -115,7 +115,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 3,
                             DatePublished = DateTime.Parse("2010-3-30"),
-                            Price = 12.0,
+                            Price = 12.0M,
                          },
                         new Manga()
                         {
@@ -127,7 +127,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 4,
                             DatePublished = DateTime.Parse("2010-3-7"),
-                            Price = 12.0,
+                            Price = 12.0M,
                          },
                         new Manga()
                         {
@@ -139,7 +139,7 @@ namespace MangaShop.Data
                             Genre = Genre.Action,
                             Volume = 5,
                             DatePublished = DateTime.Parse("2010-3-14"),
-                            Price = 12.0,
+                            Price = 12.0M,
                          },
                     });
                 context.SaveChanges();

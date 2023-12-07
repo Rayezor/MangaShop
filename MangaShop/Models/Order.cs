@@ -7,7 +7,8 @@ namespace MangaShop.Models
     {
         public int Id { get; set; }
         public List<OrderItem> OrderItems { get; set; } = new();
-        public double OrderTotal { get; set; }
+        public decimal OrderTotal { get; set; }
         public DateTime OrderPlaced { get; set; }
+        public string PaymentIntentId { get; set; }
     }
 }
