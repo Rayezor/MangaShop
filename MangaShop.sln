@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangaShop", "MangaShop\MangaShop.csproj", "{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangaShop", "MangaShop\MangaShop.csproj", "{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangakaConsoleApp", "MangakaConsoleApp\MangakaConsoleApp.csproj", "{E80AD7F6-C495-4AA3-826F-7EEDF7594CBA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangaShopAPI", "MangaShopAPI\MangaShopAPI.csproj", "{194400F2-0683-4373-8919-501BA2FA8BE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangaShop.Tests", "MangaShop.Tests\MangaShop.Tests.csproj", "{503DF224-3096-44EF-B2F0-E44F07A4D109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DBE75FC-96EC-4C3C-8205-6EEACF92F45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E80AD7F6-C495-4AA3-826F-7EEDF7594CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E80AD7F6-C495-4AA3-826F-7EEDF7594CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E80AD7F6-C495-4AA3-826F-7EEDF7594CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E80AD7F6-C495-4AA3-826F-7EEDF7594CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194400F2-0683-4373-8919-501BA2FA8BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194400F2-0683-4373-8919-501BA2FA8BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194400F2-0683-4373-8919-501BA2FA8BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194400F2-0683-4373-8919-501BA2FA8BE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503DF224-3096-44EF-B2F0-E44F07A4D109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503DF224-3096-44EF-B2F0-E44F07A4D109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503DF224-3096-44EF-B2F0-E44F07A4D109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503DF224-3096-44EF-B2F0-E44F07A4D109}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

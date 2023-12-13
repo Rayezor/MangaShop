@@ -18,6 +18,12 @@ namespace MangaShop.Controllers
 
         public MangasController(MangashopContext context)
         {
+            if (context == null)
+            {
+                // Log or debug information
+                throw new ArgumentNullException(nameof(context), "Context cannot be null");
+            }
+
             _context = context;
         }
 
@@ -25,6 +31,14 @@ namespace MangaShop.Controllers
         public async Task<IActionResult> Index()
         {
               return View(await _context.Mangas.ToListAsync());
+        }
+
+        [HttpGet("/GetAll")]
+        public JsonResult GetAll()
+        {
+            var result = _context.Mangas.ToList();
+
+            return new JsonResult(Ok(result));
         }
 
         // GET: Mangas/Details/5

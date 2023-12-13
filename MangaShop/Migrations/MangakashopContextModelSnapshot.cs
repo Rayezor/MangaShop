@@ -43,7 +43,7 @@ namespace MangaShop.Migrations
 
                     b.HasIndex("MangaId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("MangaShop.Models.DefaultUser", b =>
@@ -175,7 +175,7 @@ namespace MangaShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mangas");
+                    b.ToTable("Mangas", (string)null);
                 });
 
             modelBuilder.Entity("MangaShop.Models.Order", b =>
@@ -197,7 +197,7 @@ namespace MangaShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("MangaShop.Models.OrderItem", b =>
@@ -226,7 +226,7 @@ namespace MangaShop.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
