@@ -90,12 +90,24 @@ namespace MangaShop.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(manga);
+                    // Check if the entity is already in the context
+                    var existingManga = await _context.Mangas.FindAsync(id);
+                    if (existingManga != null)
+                    {
+                        // Update the existing entity
+                        _context.Entry(existingManga).CurrentValues.SetValues(manga);
+                        _context.Update(existingManga);
+                    }
+                    else
+                    {
+                        // The entity is not in the context, attach and update
+                        _context.Update(manga);
+                    }
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

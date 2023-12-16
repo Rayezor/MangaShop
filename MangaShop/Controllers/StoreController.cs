@@ -23,7 +23,6 @@ namespace MangaShop.Controllers
         {
             var books = _context.Mangas.Select(b => b);
 
-            // Apply your existing filtering logic
             if (!string.IsNullOrEmpty(searchString))
             {
                 books = books.Where(b => b.Title.Contains(searchString) || b.Author.Contains(searchString));
@@ -47,7 +46,7 @@ namespace MangaShop.Controllers
             // Apply pagination
             var paginatedBooks = await books.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            // Create a ViewModel to hold paginated data
+            // ViewModel to hold paginated data
             var viewModel = new MangaViewModel
             {
                 Mangas = paginatedBooks,

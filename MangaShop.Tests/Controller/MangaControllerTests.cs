@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Moq;
 
 namespace MangaShop.Tests.Controllers
 {
     public class MangasControllerTests
     {
-        private static async Task<MangashopContext> GetDbContext()
+        private static async Task<MangashopContext> GetDbContextAsync()
         {
-            var options = new DbContextOptionsBuilder<MangashopContext>()
-                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-                .Options;
-            var databaseContext = new MangashopContext(options);
+
+            var databaseContext = MangashopContext.CreateForUnitTest();
             databaseContext.Database.EnsureCreated();
+
             if (!await databaseContext.Mangas.AnyAsync())
             {
                 for (int i = 0; i < 10; i++)
@@ -36,9 +36,11 @@ namespace MangaShop.Tests.Controllers
                         DatePublished = DateTime.Now,
                         Price = 10.0M,
                     });
-                    await databaseContext.SaveChangesAsync();
                 }
+
+                await databaseContext.SaveChangesAsync();
             }
+
             return databaseContext;
         }
 
@@ -46,7 +48,7 @@ namespace MangaShop.Tests.Controllers
         public async Task Index_ReturnsViewResultWithListOfMangas()
         {
             // Arrange
-            var dbContext = await GetDbContext();
+            var dbContext = await GetDbContextAsync();
             var controller = new MangasController(dbContext);
 
             // Act
@@ -62,7 +64,7 @@ namespace MangaShop.Tests.Controllers
         public async Task Details_ReturnsViewResultWithManga()
         {
             // Arrange
-            var dbContext = await GetDbContext();
+            var dbContext = await GetDbContextAsync();
             var controller = new MangasController(dbContext);
 
             // Act
@@ -78,11 +80,11 @@ namespace MangaShop.Tests.Controllers
         public async Task Create_Post_ReturnsRedirectToActionResult()
         {
             // Arrange
-            var dbContext = await GetDbContext();
+            var dbContext = await GetDbContextAsync();
             var controller = new MangasController(dbContext);
             var manga = new Manga
             {
-                Id = 99,
+                Id = 11,
                 Title = $"Test Piece 99",
                 VolumeImage = "Test.jpg",
                 Description = "Test description",
@@ -102,15 +104,15 @@ namespace MangaShop.Tests.Controllers
             Assert.Equal("Index", redirectToActionResult.ActionName);
         }
 
-/*        [Fact]
+        [Fact]
         public async Task Edit_Post_ReturnsRedirectToActionResult()
         {
             // Arrange
-            var dbContext = await GetDbContext();
+            var dbContext = await GetDbContextAsync();
             var controller = new MangasController(dbContext);
             var manga = new Manga
             {
-                Id = 11,
+                Id = 9,
                 Title = "Updated Manga 1",
                 VolumeImage = "Test.jpg",
                 Description = "Test description",
@@ -123,26 +125,73 @@ namespace MangaShop.Tests.Controllers
             };
 
             // Act
-            var result = await controller.Edit(11, manga);
+            var result = await controller.Edit(9, manga);
 
             // Assert
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirectToActionResult.ActionName);
-        }*/
+        }
 
         [Fact]
         public async Task DeleteConfirmed_ReturnsRedirectToActionResult()
         {
             // Arrange
-            var dbContext = await GetDbContext();
+            var dbContext = await GetDbContextAsync();
             var controller = new MangasController(dbContext);
 
             // Act
-            var result = await controller.DeleteConfirmed(99);
+            var result = await controller.DeleteConfirmed(9);
 
             // Assert
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirectToActionResult.ActionName);
+        }
+
+        [Fact]
+        public async Task Index_ReturnsViewWithModel()
+        {
+            // Arrange
+            var dbContext = await GetDbContextAsync();
+            var controller = new StoreController(dbContext);
+
+            // Act
+            var result = await controller.Index(null, null, null);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<MangaViewModel>(viewResult.ViewData.Model);
+            Assert.NotNull(model);
+        }
+
+        [Fact]
+        public async Task Details_WithValidId_ReturnsViewWithModel()
+        {
+            // Arrange
+            var dbContext = await GetDbContextAsync();
+            var controller = new StoreController(dbContext);
+
+            // Act
+            var result = await controller.Details(1);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<Manga>(viewResult.ViewData.Model);
+            Assert.NotNull(model);
+            Assert.Equal(1, model.Id);
+        }
+
+        [Fact]
+        public async Task Details_WithInvalidId_ReturnsNotFound()
+        {
+            // Arrange
+            var dbContext = await GetDbContextAsync();
+            var controller = new StoreController(dbContext);
+
+            // Act
+            var result = await controller.Details(999);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
         }
     }
 }
