@@ -17,13 +17,7 @@ namespace MangaShop.Controllers
         private readonly MangashopContext _context;
 
         public MangasController(MangashopContext context)
-        {
-            if (context == null)
-            {
-                // Log or debug information
-                throw new ArgumentNullException(nameof(context), "Context cannot be null");
-            }
-
+        { 
             _context = context;
         }
 
@@ -31,14 +25,6 @@ namespace MangaShop.Controllers
         public async Task<IActionResult> Index()
         {
               return View(await _context.Mangas.ToListAsync());
-        }
-
-        [HttpGet("/GetAll")]
-        public JsonResult GetAll()
-        {
-            var result = _context.Mangas.ToList();
-
-            return new JsonResult(Ok(result));
         }
 
         // GET: Mangas/Details/5
@@ -66,8 +52,6 @@ namespace MangaShop.Controllers
         }
 
         // POST: Mangas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,VolumeImage,Description,Author,MangaCategory,Genre,Volume,DatePublished,Price")] Manga manga)
@@ -98,8 +82,6 @@ namespace MangaShop.Controllers
         }
 
         // POST: Mangas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,VolumeImage,Description,Author,MangaCategory,Genre,Volume,DatePublished,Price")] Manga manga)
@@ -169,7 +151,7 @@ namespace MangaShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MangaExists(int id)
+        public bool MangaExists(int id)
         {
           return _context.Mangas.Any(e => e.Id == id);
         }

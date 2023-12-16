@@ -119,10 +119,9 @@ namespace MangaShop.Models
 
         public List<CartItem> GetAllCartItems()
         {
-            return CartItems ??
-                (CartItems = _context.CartItems.Where(ci => ci.CartId == Id)
+            return CartItems ??= _context.CartItems.Where(ci => ci.CartId == Id)
                     .Include(ci => ci.Manga)
-                    .ToList());
+                    .ToList();
         }
         public int GetCartTotal()
         {

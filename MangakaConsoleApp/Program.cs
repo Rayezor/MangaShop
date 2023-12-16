@@ -2,6 +2,7 @@
 using System.Net.Http.Json;
 using MangaShop.Data.Enum;
 using MangaShop.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MangaShopAPIConsoleApp
 {
@@ -17,7 +18,6 @@ namespace MangaShopAPIConsoleApp
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 await GetAllMangaAsync();
-                await GetMangaByIdAsync(1);
 
                 var newManga = new Manga
                 {
@@ -32,11 +32,13 @@ namespace MangaShopAPIConsoleApp
                     Price = 9.99M
                 };
 
-                await CreateMangaAsync(newManga);
+                Manga createdManga = await CreateMangaAsync(newManga);
+
+                await GetMangaByIdAsync(createdManga.Id);
 
                 await GetAllMangaAsync();
 
-                var mangaToUpdate = await GetMangaByIdAsync(1);
+                var mangaToUpdate = await GetMangaByIdAsync(createdManga.Id);
                 if (mangaToUpdate != null)
                 {
                     mangaToUpdate.Title = "Updated Manga Title";
@@ -45,7 +47,7 @@ namespace MangaShopAPIConsoleApp
 
                 await GetAllMangaAsync();
 
-                await DeleteMangaAsync(1);
+                await DeleteMangaAsync(createdManga.Id);
 
                 await GetAllMangaAsync();
         }
@@ -80,13 +82,20 @@ namespace MangaShopAPIConsoleApp
             }
         }
 
-        static async Task CreateMangaAsync(Manga newManga)
+        static async Task<Manga> CreateMangaAsync(Manga newManga)
         {
             Console.WriteLine("Creating new manga...");
             HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/Manga", newManga);
             response.EnsureSuccessStatusCode();
+
+            // Read the created manga with the assigned Id from the response
+            Manga createdManga = await response.Content.ReadFromJsonAsync<Manga>();
+
             Console.WriteLine("New manga created successfully.");
             Console.WriteLine();
+
+            // Return the created manga
+            return createdManga;
         }
 
         static async Task UpdateMangaAsync(int id, Manga updatedManga)
