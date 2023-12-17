@@ -97,5 +97,22 @@ namespace MangaShopAPI.Controllers
         {
             return _context.Mangas.Any(e => e.Id == id);
         }
+
+        // DELETE: api/Manga/DeleteAll
+        [HttpDelete("DeleteAll")]
+        public async Task<IActionResult> DeleteAllManga()
+        {
+            var allManga = await _context.Mangas.ToListAsync();
+
+            if (allManga == null || allManga.Count == 0)
+            {
+                return NoContent(); // No manga to delete
+            }
+
+            _context.Mangas.RemoveRange(allManga);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
