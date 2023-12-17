@@ -41,14 +41,16 @@
             </div>
         </div>
     }
-    <ul class="pagination">
-        @for (int i = 1; i <= Model.TotalPages; i++)
-        {
-            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
-                <a class="page-link" href="@Url.Action("Index", new { page = i, searchString = Model.SearchString, minPrice = Model.MinPrice, maxPrice = Model.MaxPrice })">
-                    @i
-                </a>
-            </li>
-        }
-    </ul>
+    <div class="d-flex justify-content-center mt-3">
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i, searchString = Model.SearchString, minPrice = Model.MinPrice, maxPrice = Model.MaxPrice })">
+                        @i
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
 </div>

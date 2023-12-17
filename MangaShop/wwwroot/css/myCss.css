@@ -40,3 +40,80 @@ input[type=number]::-webkit-outer-spin-button {
 .badge-primary{
 	color: black;
 }
+
+.navbar-brand img {
+    max-width: 120px; 
+    max-height: 100px;
+    height: auto;
+}
+
+.navbar {
+	background-color: #FCECDD;
+}
+
+
+body {
+	background-color: #FFC288; 
+}
+
+.footer {
+	background-color: #FEA82F;
+}
+
+.card-body .mb-3 {
+	color: #FF6701; 
+}
+
+.card-body .card-text {
+	color: #FF6701;
+}
+
+.card-body {
+	background-color: #FCECDD; 
+}
+.page-item.active .page-link {
+	background-color: #FF6701;
+	border-color: #FCECDD;
+}
+.page-item .page-link {
+	color: #FF6701;
+	background-color: #FCECDD;
+}
+
+	.page-item .page-link:hover {
+		color: #FCECDD;
+		border: 1px solid;
+		background-color: #FEA82F;
+	}
+
+.btn.btn-primary.store-btn {
+	background-color: #FF6701;
+	border-color: #FCECDD;
+}
+
+	.btn.btn-primary.store-btn:hover {
+		background-color: #FEA82F;
+		border: 1px solid 
+	}
+a {
+	color: #FF6701;
+}
+
+.btn.btn-primary.btn-sm {
+	background-color: #FF6701;
+	border-color: #FCECDD;
+}
+
+	.btn.btn-primary.btn-sm:hover {
+		background-color: #FEA82F;
+		border: 1px solid
+	}
+
+.nav-link {
+	color: #FF6701;
+	font-size: 18px;
+}
+
+	.nav-link:hover {
+		color: #FEA82F;
+	}
