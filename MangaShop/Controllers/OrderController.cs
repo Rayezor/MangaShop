@@ -2,11 +2,7 @@
 using MangaShop.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using Stripe;
 using Stripe.Checkout;
-using Microsoft.Extensions.Options;
-using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 
 namespace MangaShop.Controllers
 {

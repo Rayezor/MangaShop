@@ -13,6 +13,7 @@ namespace MangaShop.Models
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<DefaultUser>>();
 
+            //create roles
             string[] roleNames = { "Admin", "User" };
 
             IdentityResult roleResult;
@@ -27,11 +28,14 @@ namespace MangaShop.Models
                 }
             }
 
+            //log in detauls for admin
             var email = "admin@site.com";
             var password = "Qwerty123!";
 
+            //if no userManager
             if (userManager.FindByEmailAsync(email).Result == null)
             {
+                //create user
                 DefaultUser user = new()
                 {
                     Email = email,
@@ -43,6 +47,7 @@ namespace MangaShop.Models
                     ZipCode = "12345"
                 };
 
+                // assign above user as userManager
                 IdentityResult result = userManager.CreateAsync(user, password).Result;
 
                 if (result.Succeeded)
@@ -51,6 +56,7 @@ namespace MangaShop.Models
                 }
             }
 
+            // log in details for user
             var userEmail = "user@site.com";
             var userPassword = "Qwerty123!";
 

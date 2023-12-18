@@ -1,24 +1,21 @@
-﻿using System.Reflection;
-using MangaShop.Controllers;
+﻿using MangaShop.Controllers;
 using MangaShop.Data;
 using MangaShop.Data.Enum;
 using MangaShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Xunit;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Moq;
 
 namespace MangaShop.Tests.Controllers
 {
     public class MangasControllerTests
     {
+        //Create Mock Database to use for testing
         private static async Task<MangashopContext> GetDbContextAsync()
         {
-
             var databaseContext = MangashopContext.CreateForUnitTest();
             databaseContext.Database.EnsureCreated();
 
+            // adding 10 manga to mock database
             if (!await databaseContext.Mangas.AnyAsync())
             {
                 for (int i = 0; i < 10; i++)
@@ -37,10 +34,8 @@ namespace MangaShop.Tests.Controllers
                         Price = 10.0M,
                     });
                 }
-
                 await databaseContext.SaveChangesAsync();
             }
-
             return databaseContext;
         }
 

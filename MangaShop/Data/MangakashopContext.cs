@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MangaShop.Models;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MangaShop.Data
@@ -18,6 +13,7 @@ namespace MangaShop.Data
         {
         }
 
+        //In memory database for Unit testing
         public static MangashopContext CreateForUnitTest()
         {
             var options = new DbContextOptionsBuilder<MangashopContext>()
@@ -27,11 +23,13 @@ namespace MangaShop.Data
             return new MangashopContext(options);
         }
 
+        //Db sets
         public DbSet<Manga> Mangas { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
+        //Cascade delete used to delete Manga in a CartItem
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CartItem>()

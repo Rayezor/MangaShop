@@ -167,7 +167,7 @@ namespace MangaShop.Controllers
             }
 
             for (int i = 0; i < model.Count; i++)
-            {
+            { 
                 var user = await _userManager.FindByIdAsync(model[i].Id);
 
                 if (model[i].IsSelected && !(await _userManager.IsInRoleAsync(user, role.Name)))

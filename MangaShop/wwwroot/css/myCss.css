@@ -7,28 +7,21 @@
 	color: inherit;
 }
 
+/*Manga object displayed in card format*/
 .card-img-custom {
 	width: 100%;
 	height: 26vw;
 	object-fit: cover
 }
 
+/*delay on hover*/
 .store-card {
 	transition: all 0.2s ease;
 }
-
+	/*on hovering the Manga card in the store*/
 	.store-card:hover {
 		transform: scale(1.03);
 		box-shadow: lightgray 2px 5px 5px 2px;
-	}
-
-.store-btn {
-	transition: all 0.2s ease;
-}
-
-	.store-btn:hover {
-		background-color: forestgreen;
-		border: 1px solid forestgreen;
 	}
 
 input[type=number]::-webkit-inner-spin-button,
@@ -41,21 +34,30 @@ input[type=number]::-webkit-outer-spin-button {
 	color: black;
 }
 
+/*background color of nav bar*/
 .navbar-brand img {
-    max-width: 120px; 
-    max-height: 100px;
-    height: auto;
+	max-width: 120px;
+	max-height: 100px;
+	height: auto;
+	transition: all 0.2s ease;
 }
+	/*on hovering home logo button*/
+	.navbar-brand img:hover {
+		transform: scale(1.03);
+		box-shadow: lightgray 2px 5px 5px 2px;
+	}
 
+/*background color of nav bar*/
 .navbar {
 	background-color: #FCECDD;
 }
 
-
+/*background color of body*/
 body {
 	background-color: #FFC288; 
 }
 
+/*background color of footer*/
 .footer {
 	background-color: #FEA82F;
 }
@@ -64,56 +66,67 @@ body {
 	color: #FF6701; 
 }
 
+/*color of text within card*/
 .card-body .card-text {
 	color: #FF6701;
 }
 
+/*background color of card*/
 .card-body {
 	background-color: #FCECDD; 
 }
+
+/*background color of active page number*/
 .page-item.active .page-link {
 	background-color: #FF6701;
 	border-color: #FCECDD;
 }
+
+/*color and background color of page number*/
 .page-item .page-link {
 	color: #FF6701;
 	background-color: #FCECDD;
 }
-
+	/*on hovering page number change color of text and background color and add border*/
 	.page-item .page-link:hover {
 		color: #FCECDD;
 		border: 1px solid;
 		background-color: #FEA82F;
 	}
 
+/*background color and border of store button*/
 .btn.btn-primary.store-btn {
 	background-color: #FF6701;
 	border-color: #FCECDD;
 }
-
+	/*on hovering store button change color and add border*/
 	.btn.btn-primary.store-btn:hover {
 		background-color: #FEA82F;
-		border: 1px solid 
+		border: 1px solid
 	}
+
+/*color of link*/
 a {
 	color: #FF6701;
 }
 
+/*background color and border of button*/
 .btn.btn-primary.btn-sm {
 	background-color: #FF6701;
 	border-color: #FCECDD;
 }
-
+	/*on hovering button change color and add border*/
 	.btn.btn-primary.btn-sm:hover {
 		background-color: #FEA82F;
 		border: 1px solid
 	}
 
+/*color  and font of nav bar items*/
 .nav-link {
 	color: #FF6701;
 	font-size: 18px;
 }
-
+	/* change color on hovering nav bar items*/
 	.nav-link:hover {
 		color: #FEA82F;
 	}

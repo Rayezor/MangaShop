@@ -11,46 +11,57 @@ namespace MangaShopAPIConsoleApp
         private static HttpClient httpClient;
         static async Task Main()
         {
-                httpClient = new HttpClient
-                {
-                    BaseAddress = new Uri("http://localhost:5233/")
-                };
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient = new HttpClient
+            {
+                BaseAddress = new Uri("http://localhost:5233/")
+            };
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                await GetAllMangaAsync();
+            //list all Manga
+            await GetAllMangaAsync();
 
-                var newManga = new Manga
-                {
-                    Title = "New Manga",
-                    VolumeImage = "new-manga-image.jpg",
-                    Description = "Description of the new manga",
-                    Author = "Author Name",
-                    MangaCategory = MangaCategory.Shonen,
-                    Genre = Genre.Adventure,
-                    Volume = 1,
-                    DatePublished = DateTime.Now,
-                    Price = 9.99M
-                };
+            // new manga
+            var newManga = new Manga
+            {
+                Title = "New Manga",
+                VolumeImage = "new-manga-image.jpg",
+                Description = "Description of the new manga",
+                Author = "Author Name",
+                MangaCategory = MangaCategory.Shonen,
+                Genre = Genre.Adventure,
+                Volume = 1,
+                DatePublished = DateTime.Now,
+                Price = 9.99M
+            };
 
-                Manga createdManga = await CreateMangaAsync(newManga);
+            //create new Manga
+            Manga createdManga = await CreateMangaAsync(newManga);
 
-                await GetMangaByIdAsync(createdManga.Id);
+            //get Manga by Id
+            await GetMangaByIdAsync(createdManga.Id);
 
-                await GetAllMangaAsync();
+            //list all Manga showing the newly added one
+            await GetAllMangaAsync();
 
-                var mangaToUpdate = await GetMangaByIdAsync(createdManga.Id);
-                if (mangaToUpdate != null)
-                {
-                    mangaToUpdate.Title = "Updated Manga Title";
-                    await UpdateMangaAsync(mangaToUpdate.Id, mangaToUpdate);
-                }
+            //update the title of newly added Manga
+            var mangaToUpdate = await GetMangaByIdAsync(createdManga.Id);
+            if (mangaToUpdate != null)
+            {
+                mangaToUpdate.Title = "Updated Manga Title";
+                await UpdateMangaAsync(mangaToUpdate.Id, mangaToUpdate);
+            }
 
-                await GetAllMangaAsync();
+            //list all Manga showing the newly edited one
+            await GetAllMangaAsync();
 
-                await DeleteMangaAsync(createdManga.Id);
+            //delete the newly created Manga
+            await DeleteMangaAsync(createdManga.Id);
 
-                await GetAllMangaAsync();
+            //list all Manga showing the newly created Manga has been deleted
+            await GetAllMangaAsync();
         }
+
+        //Get all Manga
         static async Task GetAllMangaAsync()
         {
             Console.WriteLine("Getting all manga...");
@@ -66,6 +77,7 @@ namespace MangaShopAPIConsoleApp
             Console.WriteLine();
         }
 
+        //Get manga by Id
         static async Task<Manga> GetMangaByIdAsync(int id)
         {
             Console.WriteLine($"Getting manga by Id: {id}...");
@@ -82,22 +94,24 @@ namespace MangaShopAPIConsoleApp
             }
         }
 
+        //Create Manga
         static async Task<Manga> CreateMangaAsync(Manga newManga)
         {
             Console.WriteLine("Creating new manga...");
             HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/Manga", newManga);
             response.EnsureSuccessStatusCode();
 
-            // Read the created manga with the assigned Id from the response
+            //Read the created manga with the assigned Id from the response
             Manga createdManga = await response.Content.ReadFromJsonAsync<Manga>();
 
             Console.WriteLine("New manga created successfully.");
             Console.WriteLine();
 
-            // Return the created manga
+            //Return the created manga
             return createdManga;
         }
 
+        //Update manga by Id using PUT
         static async Task UpdateMangaAsync(int id, Manga updatedManga)
         {
             Console.WriteLine($"Updating manga with Id: {id}...");
@@ -107,6 +121,7 @@ namespace MangaShopAPIConsoleApp
             Console.WriteLine();
         }
 
+        //Delete Manga by Id using DELETE
         static async Task DeleteMangaAsync(int id)
         {
             Console.WriteLine($"Deleting manga with Id: {id}...");

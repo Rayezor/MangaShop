@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Reflection.PortableExecutable;
 
 namespace MangaShop.Data.Enum
 {

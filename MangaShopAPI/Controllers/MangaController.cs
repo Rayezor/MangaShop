@@ -23,7 +23,7 @@ namespace MangaShopAPI.Controllers
             return await _context.Mangas.ToListAsync();
         }
 
-        // GET: api/Manga/5
+        // GET: api/Manga/id
         [HttpGet("{id}")]
         public async Task<ActionResult<Manga>> GetManga(int id)
         {
@@ -47,7 +47,7 @@ namespace MangaShopAPI.Controllers
             return CreatedAtAction(nameof(GetManga), new { id = manga.Id }, manga);
         }
 
-        // PUT: api/Manga/5
+        // PUT: api/Manga/id
         [HttpPut("{id}")]
         public async Task<IActionResult> PutManga(int id, Manga manga)
         {
@@ -77,7 +77,7 @@ namespace MangaShopAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Manga/5
+        // DELETE: api/Manga/id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteManga(int id)
         {

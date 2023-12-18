@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MangaShop.Data;
 using MangaShop.Models;
@@ -11,9 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MangaShop.Controllers
 {
+    // Only allows Role of Admin to access this controller. 
     [Authorize(Roles = "Admin")]
     public class MangasController : Controller
     {
+        // Database setup
         private readonly MangashopContext _context;
 
         public MangasController(MangashopContext context)
@@ -27,7 +24,7 @@ namespace MangaShop.Controllers
               return View(await _context.Mangas.ToListAsync());
         }
 
-        // GET: Mangas/Details/5
+        // GET: Mangas/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Mangas == null)
@@ -65,7 +62,7 @@ namespace MangaShop.Controllers
             return View(manga);
         }
 
-        // GET: Mangas/Edit/5
+        // GET: Mangas/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Mangas == null)
@@ -81,7 +78,7 @@ namespace MangaShop.Controllers
             return View(manga);
         }
 
-        // POST: Mangas/Edit/5
+        // POST: Mangas/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,VolumeImage,Description,Author,MangaCategory,Genre,Volume,DatePublished,Price")] Manga manga)
@@ -126,7 +123,7 @@ namespace MangaShop.Controllers
             return View(manga);
         }
 
-        // GET: Mangas/Delete/5
+        // GET: Mangas/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Mangas == null)
@@ -144,7 +141,7 @@ namespace MangaShop.Controllers
             return View(manga);
         }
 
-        // POST: Mangas/Delete/5
+        // POST: Mangas/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -163,6 +160,7 @@ namespace MangaShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //Check if a Manga exists using id
         public bool MangaExists(int id)
         {
           return _context.Mangas.Any(e => e.Id == id);
